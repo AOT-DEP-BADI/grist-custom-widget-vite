@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>%VITE_GRIST_WIDGET_TITLE%</title>
+    <meta name="description" content="%VITE_GRIST_WIDGET_DESCRIPTION%"/>
+    <link rel="alternate icon" href="/favicon.svg" sizes="any"/>
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="%VITE_GRIST_WIDGET_TITLE%"/>
+    <meta property="og:description" content="%VITE_GRIST_WIDGET_DESCRIPTION%"/>
+    <meta property="og:image" content="%VITE_GRIST_WIDGET_OPENGRAPH_IMAGE%"/>
+    <meta property="og:url" content="%VITE_GRIST_WIDGET_OPENGRAPH_URL%"/>
+    <meta property="og:site_name" content="%VITE_GRIST_WIDGET_OPENGRAPH_SITE_NAME%"/>
+    <meta property="og:type" content="%VITE_GRIST_WIDGET_OPENGRAPH_TYPE%"/>
+    <meta property="og:locale" content="%VITE_GRIST_WIDGET_OPENGRAPH_LOCALE%"/>
+
+    <!-- GRIST API -->
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- REACT jsx application -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
