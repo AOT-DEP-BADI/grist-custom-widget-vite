@@ -1,0 +1,19 @@
+{
+  "name": "grist-widget-vite-template-vanilla-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "devtools-grist dev",
+    "build": "devtools-grist build",
+    "preview": "devtools-grist preview",
+    "devtools": "devtools-grist",
+    "vite": "vite",
+    "vite:build": "tsc -b && vite build"
+  },
+  "devDependencies": {
+    "@aot-dep-badi/devtools-grist": "workspace:*",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12"
+  }
+}
