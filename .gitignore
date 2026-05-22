@@ -34,3 +34,7 @@ Thumbs.db
 
 # Templates files
 templates/**/public/manifest.json
+
+# e2e
+tests/e2e/pack/**
+tests/e2e/**/public/manifest.json
