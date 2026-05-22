@@ -1,0 +1,60 @@
+{
+  "application": {
+    "title": "DEVTOOLS GRIST CUSTOM WIDGET",
+    "description": "📦 CLI tool for rapid local prototyping and deployment of Grist custom widgets using Vite.js.",
+    "options": {
+      "help_description": "Display this help message",
+      "version_description": "Display this application version",
+      "verbose_description": "Display detailed logs and execution steps",
+      "clear_description": "Clear the console screen before running"
+    },
+    "headings": {
+      "commands_available": "Available commands"
+    }
+  },
+  "commands": {
+    "dev": {
+      "description": "Launch the Grist custom widget development environment.",
+      "ready": "Grist custom widget development environment is ready!",
+      "shutdown": "Shutting down development environment",
+      "shutdown_cleanup_reason": "Cleanup signal reason: {{reason}}",
+      "shutdown_vite": "Stopping Vite local web server...",
+      "shutdown_docker": "Stopping Grist Docker container...",
+      "shutdown_success": "Houston, we have... a completely successfully shutdown!",
+      "error_stopping_vite": "Error stopping Vite local web server.",
+      "error_unexpected": "An unexpected error occurred in dev command.",
+      "error_timeout_docker": "Docker containers down command was forcefully terminated with SIGKILL after timeout.",
+      "error_signal_docker": "Docker containers command was terminated by signal: {{signal}}.",
+      "error_failed_docker": "Failed to stop Docker containers automatically.",
+      "option_vite_port": "Port for the Vite.js local server [default: {{default}}]",
+      "option_grist_port": "Port for the Grist Docker container [default: {{default}}]"
+    },
+    "build": {
+      "description": "Compile the widget for production."
+    },
+    "config": {
+      "description": "Manages application preferences using the following actions (get, set, list).",
+      "key_description": "The configuration key to manage.",
+      "value_description": "The value to set for the given configuration key.",
+      "actions": {
+        "get": "To get value of a given key   ",
+        "set": "To set a value for a given key",
+        "list": "To list all keys and values   ",
+        "list_title": "Current configuration:"
+      },
+      "fields": {
+        "lang": "The display language of the application CLI.",
+        "clearBeforeRunning": "Automatically clears the terminal screen before running the application CLI."
+      },
+      "success_set": "✅ Configuration updated: '{{key}}' is now set to '{{value}}'.",
+      "error_missing_key": "⚠\uFE0F  Missing configuration key. \n\nUse the command action '{{action}}' to view available keys.",
+      "error_key_not_found": "⚠\uFE0F Configuration key '{{key}}' not found.\n\nUse the command action '{{action}}' to view available keys.",
+      "error_missing_value": "❌ Missing value for the key '{{key}}'.",
+      "error_invalid_lang": "❌ Invalid language. Supported values: {{languages}}.",
+      "error_invalid_boolean": "❌ Invalid value for '{{key}}'. Expected 'true' or 'false' but received '{{value}}'."
+    }
+  },
+  "errors": {
+    "fatal": "💥 Fatal error: Unable to start the application. A critical error has occurred."
+  }
+}

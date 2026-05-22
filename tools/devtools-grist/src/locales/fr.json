@@ -1,0 +1,59 @@
+{
+  "application": {
+    "description": "📦 Outil CLI pour la conception local de widgets personnalisés Grist dans l'écosystème Vite.js.",
+    "options": {
+      "help_description": "Affiche l'aide.",
+      "version_description": "Affiche la version de l'application.",
+      "verbose_description": "Affiche les logs détaillés.",
+      "clear_description": "Efface l'écran de la console avant l'exécution"
+    },
+    "headings": {
+      "commands_available": "Commandes disponibles"
+    }
+  },
+  "commands": {
+    "dev": {
+      "description": "Lancer l'environnement de développement Grist custom widget.",
+      "ready": "L'environnement de DEV de widget Grist est prêt !",
+      "shutdown": "Arrêt de l'environnement de développement",
+      "shutdown_cleanup_reason": "Signal d'interruption émis : {{reason}}",
+      "shutdown_vite": "Arrêt du serveur local Vite...",
+      "shutdown_docker": "Arrêt du conteneur Docker Grist...",
+      "shutdown_success": "J'ai ressenti une grande perturbation dans la force... comme si des milliers de lignes de code s'étaient éteintes d'un coup !",
+      "error_unexpected": "Une erreur inattendue est survenue dans la commande dev",
+      "error_stopping_vite": "Erreur lors de l'arrêt du serveur web local Vite.",
+      "error_timeout_docker": "La commande d'arrêt des conteneurs Docker a été interrompue de force par un SIGKILL après expiration du délai.",
+      "error_signal_docker": "La commande des conteneurs Docker a été interrompue par le signal : {{signal}}",
+      "error_failed_docker": "Impossible d'arrêter automatiquement les conteneurs Docker.",
+      "option_vite_port": "Port pour le serveur web local Vite.js [défaut: {{default}}]",
+      "option_grist_port": "Port pour le conteneur Docker Grist [défaut: {{default}}]"
+    },
+    "build": {
+      "description": "Compiler le widget Grist pour la production."
+    },
+    "config": {
+      "description": "Gère les préférences de l'application, à l'aide des actions suivantes (get, set, list).",
+      "key_description": "La clé de configuration concerné.",
+      "value_description": "Nouvelle valeur à associer à la clé de configuration spécifiée.",
+      "actions": {
+        "get": "Pour obtenir la valeur d'une clé donnée     ",
+        "set": "Pour définir une valeur pour une clé donnée ",
+        "list": "Pour lister toutes les clés et leurs valeurs",
+        "list_title": "Configuration actuelle :"
+      },
+      "fields": {
+        "lang": "La langue d'affichage de l'application CLI.",
+        "clearBeforeRunning": "Efface automatiquement l'écran du terminal avant de lancer l'application CLI."
+      },
+      "success_set": "✅ Configuration mise à jour : '{{key}}' est maintenant défini sur '{{value}}'.",
+      "error_missing_key": "⚠\uFE0F Clé de configuration manquante. \n\nUtilisez l'action '{{action}}' pour afficher les clés disponibles.",
+      "error_key_not_found": "⚠\uFE0F Clé de configuration '{{key}}' introuvable.\n\nUtilisez l'action '{{action}}' pour afficher les clés disponibles.",
+      "error_missing_value": "❌ Valeur manquante pour la clé '{{key}}'.",
+      "error_invalid_lang": "❌ Langue invalide. Valeurs supportées : {{languages}}.",
+      "error_invalid_boolean": "❌ Valeur invalide pour '{{key}}'. 'true' ou 'false' attendu, mais reçu '{{value}}'."
+    }
+  },
+  "errors": {
+    "fatal": "💥 Erreur fatale : Impossible de démarrer l'application. Une erreur critique est survenue."
+  }
+}
