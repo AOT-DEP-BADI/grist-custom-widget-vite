@@ -31,3 +31,6 @@ build
 # OS / misc
 .DS_Store
 Thumbs.db
+
+# Templates files
+templates/**/public/manifest.json
