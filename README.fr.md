@@ -4,13 +4,13 @@ Grist custom widget vite
 
 > **Templates Vite.js pour la conception de custom widgets Grist.**
 >
-> Une collection de modèles (React, Vanilla avec ou sans TypeScript...) pour initier le développement de vos widgets Grist personnalisés dans l'écosystème moderne de [Vite.js](https://vite.dev/)
+> Une collection de modèles (React, Vanilla avec ou sans TypeScript...) pour le développement de vos widgets Grist dans l'écosystème [Vite.js](https://vite.dev/).
 
----
+
 
 ## Préambule
 
-Ce boilerplate fournit une base robuste pour créer des widgets personnalisés pour Grist. En s'appuyant sur Vite.js pour un rechargement à chaud quasi instantané (*Hot Module Replacement* - HMR) et, en option, sur TypeScript pour une sécurité de typage de bout en bout, il garantit une expérience de développement confortable. Il intègre également un environnement Grist conteneurisé (Docker), vous permettant de tester vos widgets localement dans une véritable instance Grist, sans aucune configuration manuelle. L'architecture est très flexible : elle gère automatiquement votre manifeste de widget et prend en charge deux stratégies de construction (Vite standard pour le découpage optimisé des ressources ou SPA (Single Page Application)) selon vos besoins de déploiement.
+Ce boilerplate fournit une base robuste pour créer des [Grist custom widgets](https://support.getgrist.com/widget-custom/). En s'appuyant sur Vite.js pour un rechargement à chaud quasi instantané (*Hot Module Replacement* - HMR) et, en option, sur TypeScript pour une sécurité de typage de bout en bout, il garantit une expérience de développement confortable. Il intègre également un environnement Grist conteneurisé (Docker), vous permettant de tester vos widgets localement dans une véritable instance Grist, sans aucune configuration manuelle. L'architecture est très flexible : elle gère automatiquement votre manifeste de widget et prend en charge deux stratégies de construction (Vite standard pour le découpage optimisé des ressources ou SPA (Single Page Application)) selon vos besoins de déploiement.
 
 **Caractéristiques principales :**
 
@@ -19,7 +19,7 @@ Ce boilerplate fournit une base robuste pour créer des widgets personnalisés p
 * **Bundling flexible** : Choisissez votre stratégie de déploiement grâce au support du découpage standard des ressources (*Standard asset splitting*) avec gestion du cache, ou d'un build SPA (*Single Page Application*).
 * **CLI Devtools unifié** : Gérez sans effort le développement local, la compilation de production et la prévisualisation grâce à une application CLI unique offrant des commandes simples (`dev`, `build`, `preview`).
 
----
+
 
 ## Démarrage rapide
 
@@ -58,7 +58,7 @@ Et voilà, vous êtes prêt à développer votre widget Grist ! Une fois votre p
  - pour compiler le widget Grist pour la production (`pnpm build`),
  - et pour prévisualiser la version de production (`pnpm preview`).
 
----
+
 
 ## TL;DR
 
@@ -144,7 +144,7 @@ Cette commande orchestre quatre étapes clés :
  - **Grist conteneurisé** : Lance un conteneur Grist préconfiguré pour reconnaître automatiquement le manifeste de production stocké dans `dist/v.{x.y.z}/manifest.json`.
  - **Liaison dynamique** : Injecte l'URL du manifeste de production ([http://host.docker.internal:4173/manifest.json](https://www.google.com/search?q=http://host.docker.internal:4173/manifest.json)) dans l'environnement Grist via la variable `GRIST_WIDGET_LIST_URL`, rendant votre widget instantanément disponible dans le catalogue des widgets personnalisés de Grist.
 
----
+
 
 ## À propos
 
