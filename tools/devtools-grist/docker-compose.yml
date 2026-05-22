@@ -1,0 +1,16 @@
+services:
+  grist:
+    image: gristlabs/grist:1.7
+    ports:
+      - "${GRIST_PORT:-8484}:8484"
+    environment:
+      - GRIST_WIDGET_LIST_URL=${GRIST_WIDGET_LIST_URL:-http://host.docker.internal:${VITE_PORT:-5173}/manifest.json}
+      - GRIST_IN_SERVICE=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - grist_devtools_data:/persist
+
+volumes:
+  grist_devtools_data:
+    name: grist_devtools_shared_data
