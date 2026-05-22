@@ -6,6 +6,7 @@ Grist custom widget vite
 >
 > A lightweight and efficient collection of templates (React, Vanilla with or without TypeScript...) to jumpstart your Grist custom widget development into modern ecosystem [Vite.js](https://vite.dev/)
 
+---
 
 ## Preamble
 
@@ -18,6 +19,7 @@ This boilerplate provides a robust foundation for building Grist custom widgets.
 - **Flexible Bundling**: Choose your deployment strategy with support for *Standard asset splitting* with cache-busting or a SPA build (*Single Page Application*).
 - **Unified Devtools CLI**: Effortlessly manage local development, production building, and previewing through a unique CLI application providing simple commands (`dev`, `build`, `preview`).
 
+---
 
 ## Quick Start
 
@@ -150,7 +152,7 @@ This command orchestrates four key stages:
 
 - **Dynamic Linking**: Injects the production manifest URL (http://host.docker.internal:4173/manifest.json) into the Grist environment via the GRIST_WIDGET_LIST_URL variable, making your widget instantly available in the Grist custom widget catalog.
 
-
+---
 
 ## About
 
