@@ -41,7 +41,7 @@ Use [tiged](https://github.com/tiged/tiged) to instantly clone one of our offici
 npx tiged AOT-DEP-BADI/grist-custom-widget-vite/templates/react my-widget
 
 # Navigate to your project folder
-cd my-custom-grist-widget
+cd my-widget
 
 # Install dependencies
 pnpm install

@@ -11,6 +11,7 @@
     "dev:devtools": "pnpm --filter devtools-grist dev",
     "test:devtools": "pnpm --filter devtools-grist test",
     "build:devtools": "pnpm --filter devtools-grist build",
+    "package:devtools": "pnpm build:devtools && pnpm --filter devtools-grist exec pnpm pack --pack-destination ../../pack",
     "dev:template:react": "pnpm --filter grist-widget-vite-template-react dev",
     "dev:template:react-ts": "pnpm --filter grist-widget-vite-template-react-ts dev",
     "dev:template:vanilla": "pnpm --filter grist-widget-vite-template-vanilla dev",
@@ -20,8 +21,7 @@
     "devtools:react-ts": "pnpm --filter grist-widget-vite-template-react-ts devtools",
     "devtools:vanilla": "pnpm --filter grist-widget-vite-template-vanilla devtools",
     "devtools:vanilla-ts": "pnpm --filter grist-widget-vite-template-vanilla-ts devtools",
-    "test:e2e": "pnpm pack:devtools && pnpm --dir tests/e2e/widget-react-sandbox-isolated install && pnpm --dir tests/e2e/widget-react-sandbox-isolated",
-    "test:e2e:run": "pnpm --dir tests/e2e/widget-react-sandbox-isolated",
-    "pack:devtools": "pnpm --filter devtools-grist archive"
+    "test:e2e": "pnpm --filter devtools-grist test:e2e:make-package && pnpm --dir tests/e2e/widget-react-sandbox-isolated install && pnpm --dir tests/e2e/widget-react-sandbox-isolated",
+    "test:e2e:run": "pnpm --dir tests/e2e/widget-react-sandbox-isolated"
   }
 }

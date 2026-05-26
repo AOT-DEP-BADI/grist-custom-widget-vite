@@ -2,3 +2,4 @@ packages:
   - 'templates/*'
   - 'tools/*'
 
+shellEmulator: true
