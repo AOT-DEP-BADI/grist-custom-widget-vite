@@ -16,8 +16,8 @@ importers:
         version: 19.2.6(react@19.2.6)
     devDependencies:
       '@aot-dep-badi/devtools-grist':
-        specifier: file:///C:/BADI/badi-grist/grist-widget-vite/tests/e2e/pack/aot-dep-badi-devtools-grist-0.1.0.tgz
-        version: file:../pack/aot-dep-badi-devtools-grist-0.1.0.tgz(vite@8.0.14)
+        specifier: file:../../../pack/aot-dep-badi-devtools-grist-0.1.0.tgz
+        version: file:../../../pack/aot-dep-badi-devtools-grist-0.1.0.tgz(vite@8.0.14)
       '@babel/core':
         specifier: ^7.29.0
         version: 7.29.7
@@ -57,8 +57,8 @@ importers:
 
 packages:
 
-  '@aot-dep-badi/devtools-grist@file:../pack/aot-dep-badi-devtools-grist-0.1.0.tgz':
-    resolution: {integrity: sha512-WyYef1blG2aViS66xin7ga2Qdditqr8yFi7vkO8pg68LsIaFcr3aqDo5xT/1GTi/UHFw4/x5Mr6jtT52UHMr8w==, tarball: file:../pack/aot-dep-badi-devtools-grist-0.1.0.tgz}
+  '@aot-dep-badi/devtools-grist@file:../../../pack/aot-dep-badi-devtools-grist-0.1.0.tgz':
+    resolution: {integrity: sha512-lRPwL5aCDuO/KMExg0lxYxUiDIkFNvW8RN+n55yuECn5rs3bjCujNDtiywAYyT72P1J5Yz4vmJ+bJZy3eJ39Lw==, tarball: file:../../../pack/aot-dep-badi-devtools-grist-0.1.0.tgz}
     version: 0.1.0
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -971,7 +971,7 @@ packages:
 
 snapshots:
 
-  '@aot-dep-badi/devtools-grist@file:../pack/aot-dep-badi-devtools-grist-0.1.0.tgz(vite@8.0.14)':
+  '@aot-dep-badi/devtools-grist@file:../../../pack/aot-dep-badi-devtools-grist-0.1.0.tgz(vite@8.0.14)':
     dependencies:
       '@clack/prompts': 1.4.0
       commander: 14.0.3

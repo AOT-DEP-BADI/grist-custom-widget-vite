@@ -15,7 +15,7 @@
     "react-dom": "^19.2.6"
   },
   "devDependencies": {
-    "@aot-dep-badi/devtools-grist": "file:///C:/BADI/badi-grist/grist-widget-vite/tests/e2e/pack/aot-dep-badi-devtools-grist-0.1.0.tgz",
+    "@aot-dep-badi/devtools-grist": "file:../../../pack/aot-dep-badi-devtools-grist-0.1.0.tgz",
     "@babel/core": "^7.29.0",
     "@eslint/js": "^10.0.1",
     "@rolldown/plugin-babel": "^0.2.3",
