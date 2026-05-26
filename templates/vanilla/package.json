@@ -11,7 +11,7 @@
     "vite": "vite"
   },
   "devDependencies": {
-    "@aot-dep-badi/devtools-grist": "workspace:*",
+    "@aot-dep-badi/devtools-grist": "https://github.com/AOT-DEP-BADI/grist-custom-widget-vite/releases/download/0.1.0-alpha/aot-dep-badi-devtools-grist-0.1.0-alpha.tgz",
     "vite": "^8.0.12"
   }
 }
