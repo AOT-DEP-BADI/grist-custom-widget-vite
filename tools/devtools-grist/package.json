@@ -27,16 +27,18 @@
     "./docker-compose.yml": "./dist/docker-compose.yml"
   },
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "README.md"
   ],
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
     "test:bin": "node ./dist/cli.mjs",
+    "test:e2e:make-package": "pnpm run build && pnpm pack --pack-destination ../../tests/e2e/pack/",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
-    "archive": "pnpm run build && pnpm pack --pack-destination ../../tests/e2e/pack/",
     "prebuild": "pnpm run typecheck",
     "prepublishOnly": "pnpm run typecheck && vitest run && pnpm run build"
   },

@@ -3,7 +3,7 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 
 import pkg from './package.json' with { type: 'json' };
-import {generateGristManifestPlugin, updateGristManifestDistPlugin} from "@6i/devtools-grist/vite";
+import {generateGristManifestPlugin, updateGristManifestDistPlugin} from "@aot-dep-badi/devtools-grist/vite";
 
 
 // https://vite.dev/config/
