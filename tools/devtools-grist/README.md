@@ -1,28 +1,33 @@
 Devtools Grist
 ==============
 
-## Commands
+## Environment dev local
+
+### Commands
 
 ### Dev
 
-```
-pnpm dev 
+```shell
+# At the root of the monorepo project (alias for `pnpm dev` in the ./tools/devtools-grist folder)
+pnpm dev:devtools
 ```
 
 Launches the development environment using the **[tsdown](https://tsdown.dev/guide/)** binary. Specifically, it runs the `tsdown --watch` command. The `--watch` option instructs `tsdown` to monitor your files. As soon as a file is modified in `src/`, the project is instantly recompiled into a temporary directory.
 
 ### Test
 
-```
-pnpm test 
+```shell
+# At the root of the monorepo project (alias for `pnpm test` in the ./tools/devtools-grist folder)
+pnpm test:devtools 
 ```
 
 Launches the test environment configured with **[Vitest](https://vitest.dev/guide/)**. This allows running all `.test.ts` unit and integration tests in parallel, providing a clear visual report in the console.
 
 ### Build
 
-```
-pnpm build 
+```shell
+# At the root of the monorepo project (alias for `pnpm build` in the ./tools/devtools-grist folder)
+pnpm build:devtools 
 ```
 
 This command calls the **[tsdown](https://tsdown.dev/guide/)** binary, which is responsible for compiling the source code (TypeScript) into the distribution folder (`dist/`). **tsdown** relies on the Rolldown engine (written in Rust) to transpile TypeScript `.ts` files into ECMAScript Module (ESM) `.mjs` files executable by Node.js at ultra-fast speeds.
@@ -30,28 +35,57 @@ This command calls the **[tsdown](https://tsdown.dev/guide/)** binary, which is 
 > **Did you say .mjs file?**<br/>
 > In the Node.js ecosystem, the `.js` extension can be interpreted as CommonJS (the old `require` format) if the project's `package.json` does not specify the `"type": "module"` configuration. The `.mjs` extension forces Node.js to use the ESM format (with `import`/`export`), regardless of the configuration.
 
-Note the presence of the `prepublishOnly` command in the `package.json` file, which automatically runs the build command (`pnpm run build`) before publishing. This is a safety hook ensuring that publishing to a Node.js registry does not rely on an outdated `./dist`. The Node.js `prepublishOnly` hook executes only during the `pnpm publish` command.
+**Lifecycle hooks build**
 
-Even if the tool is not published to the public npm registry, it is still useful to use it for compiling your project. During a build at the root of the global project, pnpm will know that it must prepare this package first. This ensures you never ship broken or outdated source code.
+This build workflow includes two key lifecycle scripts to ensure code integrity with the presence of Note of the `prebuild` and `prepublishOnly` properties hook in the `package.json` file.
+
+ - **prebuild**: Automatically runs `pnpm run typecheck` before the build begins. This acts as a quality gate, ensuring that the compilation only proceeds if there are no TypeScript errors.
+
+ - **prepublishOnly**: Automatically triggers `pnpm run build` before the package is published. This is a safety hook ensuring that publishing to a Node.js registry does not rely on an outdated `./dist`. The Node.js `prepublishOnly` hook executes only during the `pnpm publish` command. Even if the tool is not published to the public npm registry, it is still useful to use it for compiling your project. During a build at the root of the global project, pnpm will know that it must prepare this package first. This ensures you never ship broken or outdated source code.
 
 ### TypeScript checking types
 
-```
+```shell
+# At the ./tools/devtools-grist folder
 pnpm typecheck
 ```
 
-This command is an essential safety step in TypeScript.
+This command provides an essential safety net for maintaining code integrity in TypeScript.
 
-The `tsdown` tool quickly transpiles TypeScript source code into a JavaScript module, as the latter does not necessarily check type validity during compilation. By using the official TypeScript compiler, **[tsc](https://www.typescriptlang.org/docs/handbook/2/basic-types.html)**, we ensure the quality of the source code's types. Specifically, we use the `tsc --noEmit` command, which asks the compiler to scan your entire project for typing errors (mistyped variables, incompatible types) without generating any output files.
+While `tsdown` tools excels at transpiling TypeScript source code into JavaScript at blazing speeds, it achieves this by simply stripping away type annotations without actually validating them. To ensure strict type safety, we complement this speed by running the official TypeScript compiler, **[tsc](https://www.typescriptlang.org/docs/handbook/2/basic-types.html)**, purely for validation.
+
+Specifically, the script runs `tsc --noEmit`. This instructs the compiler to perform a full static analysis of the codebase—catching issues like type mismatches, missing properties, or broken interfaces—without generating any boilerplate JavaScript output files.
+
+**Example**
+
+If you introduce a type mismatch in your code:
 
 ```typescript
 export function fn(): string {
   return 123; 
 }
-
-// In this case, pnpm typecheck returns an error:
-// ./src/cli.ts:2:3 - error TS2322: Type 'number' is not assignable to type 'string'.
 ```
+
+Running pnpm typecheck will intercept this immediately and output the compiler error:
+
+```
+./src/cli.ts:2:3 - error TS2322: Type 'number' is not assignable to type 'string'.
+```
+
+### Packaging
+
+```shell
+# Run from the monorepo root
+pnpm package:devtools
+```
+
+This command automates the entire packaging workflow, bundling the tool into a deployable tarball (`.tgz`) using a two-step pipeline:
+
+- **`pnpm build:devtools`**: First, triggers the compilation pipeline (running type checks and bundling the source code via `tsdown` into the `dist/` folder).
+- **`pnpm --filter devtools-grist exec pnpm pack`**: Safely scopes the execution to the `devtools-grist` package inside the monorepo. It runs the standard `pnpm pack` command, which gathers all production files, respects your `.npmignore` or `package.json` `files` field, and outputs a clean, ready-to-publish npm tarball.
+
+> **Note**: The `--pack-destination ../../pack` flag ensures that the generated tarball is extracted out of the local package directory and saved into a centralized `pack/` folder at the root of the monorepo. This keeps the workspace clean and makes the package easily accessible for local E2E testing, CI/CD archiving, or manual deployment.
+
 
 ### Release
 

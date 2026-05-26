@@ -17,11 +17,11 @@
     "dev:template:vanilla": "pnpm --filter grist-widget-vite-template-vanilla dev",
     "dev:template:vanilla-ts": "pnpm --filter grist-widget-vite-template-vanilla-ts dev",
     "dev:templates": "pnpm --filter \"./templates/**\" dev",
-    "devtools:react": "pnpm --silent --filter grist-widget-vite-template-react exec devtools-grist",
-    "devtools:react-ts": "pnpm --filter grist-widget-vite-template-react-ts devtools",
-    "devtools:vanilla": "pnpm --filter grist-widget-vite-template-vanilla devtools",
-    "devtools:vanilla-ts": "pnpm --filter grist-widget-vite-template-vanilla-ts devtools",
-    "test:e2e": "pnpm --filter devtools-grist test:e2e:make-package && pnpm --dir tests/e2e/widget-react-sandbox-isolated install && pnpm --dir tests/e2e/widget-react-sandbox-isolated",
-    "test:e2e:run": "pnpm --dir tests/e2e/widget-react-sandbox-isolated"
+    "run:devtools:react": "pnpm --silent --filter grist-widget-vite-template-react exec devtools-grist",
+    "run:devtools:react-ts": "pnpm --filter grist-widget-vite-template-react-ts devtools",
+    "run:devtools:vanilla": "pnpm --filter grist-widget-vite-template-vanilla devtools",
+    "run:devtools:vanilla-ts": "pnpm --filter grist-widget-vite-template-vanilla-ts devtools",
+    "test:e2e": "pnpm --filter devtools-grist package && pnpm --dir tests/e2e/widget-react-sandbox-isolated install && pnpm --dir tests/e2e/widget-react-sandbox-isolated exec devtools-grist",
+    "test:e2e:run": "pnpm --dir tests/e2e/widget-react-sandbox-isolated exec devtools-grist"
   }
 }

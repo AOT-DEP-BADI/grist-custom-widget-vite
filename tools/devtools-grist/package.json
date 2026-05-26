@@ -1,7 +1,7 @@
 {
   "name": "@aot-dep-badi/devtools-grist",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "description": "A starter for creating a TypeScript package.",
   "author": "Vincent Blain <vincent.blain@ac-orleans-tours.fr>",
   "license": "MIT",
@@ -36,9 +36,9 @@
     "dev": "tsdown --watch",
     "test": "vitest",
     "test:bin": "node ./dist/cli.mjs",
-    "test:e2e:make-package": "pnpm run build && pnpm pack --pack-destination ../../tests/e2e/pack/",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
+    "package": "pnpm run build && pnpm pack --pack-destination ../../pack",
     "prebuild": "pnpm run typecheck",
     "prepublishOnly": "pnpm run typecheck && vitest run && pnpm run build"
   },
