@@ -8,7 +8,6 @@
     "build": "devtools-grist build",
     "preview": "devtools-grist preview",
     "devtools": "devtools-grist",
-    "vite": "vite",
     "vite:build": "tsc -b && vite build"
   },
   "devDependencies": {

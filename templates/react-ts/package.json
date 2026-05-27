@@ -8,9 +8,8 @@
     "build": "devtools-grist build",
     "preview": "devtools-grist preview",
     "devtools": "devtools-grist",
-    "vite": "vite",
-    "vite:build": "tsc -b && vite build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "vite:build": "tsc -b && vite build"
   },
   "dependencies": {
     "react": "^19.2.6",

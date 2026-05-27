@@ -8,7 +8,7 @@
     "build": "devtools-grist build",
     "preview": "devtools-grist preview",
     "devtools": "devtools-grist",
-    "vite": "vite"
+    "vite:build": "vite build"
   },
   "devDependencies": {
     "@aot-dep-badi/devtools-grist": "https://github.com/AOT-DEP-BADI/grist-custom-widget-vite/releases/download/0.1.0-alpha/aot-dep-badi-devtools-grist-0.1.0-alpha.tgz",
