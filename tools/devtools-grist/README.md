@@ -5,6 +5,17 @@ Devtools Grist
 
 ### Commands
 
+| Command | Execution context                             | Description |
+| --- |-----------------------------------------------| --- |
+| `pnpm dev:devtools` | **Monorepo root**                             | Launches the development environment with `tsdown --watch` to instantly recompile the project whenever a file in `./src` changes. |
+| `pnpm test:devtools` | **Monorepo root**                             | Runs all unit and integration tests in parallel using **Vitest**, providing a clear visual report in the console. |
+| `pnpm build:devtools` | **Monorepo root**                             | Compiles TypeScript source code into ESM modules (`.mjs`) inside the `dist/` folder using the ultra-fast, Rust-powered **Rolldown** engine (via `tsdown`). |
+| `pnpm package:devtools` | **Monorepo root**                             | Triggers the build pipeline and bundles the package into a deployable tarball (`.tgz`) located in the centralized `./pack` folder. |
+| `pnpm add -D <pkg> --filter @aot-dep-badi/devtools-grist` | **Monorepo root**                             | *Windows Workaround*: Installs a dev dependency to the specific monorepo package from the root to bypass local pnpm resolution issues. |
+| `pnpm typecheck` | **Package folder** (`./tools/devtools-grist`) | Performs a full static analysis of the codebase using `tsc --noEmit` to catch typing errors without generating any output files. |
+| `pnpm release` | **Package folder** (`./tools/devtools-grist`) | Starts the interactive **bumpp** CLI to automate semantic versioning, update `package.json`, commit changes, and generate Git tags. |
+
+
 ### Dev
 
 ```shell
@@ -125,15 +136,21 @@ To resolve this known issue, run the command from the root of the project by add
 .> pnpm add -D tsdown --filter @aot-dep-badi/devtools-grist-widget
 ```
 
-### Tsdown - Failed to import module "unrun". Please ensure it is installed.
+
+### Tsdown error: Failed to import module "unrun"
+
+If you encounter an error stating `Failed to import module "unrun". Please ensure it is installed` when launching `tsdown`, it means a peer dependency is missing in the monorepo workspace.
+
+To resolve this, install `unrun` as a dev dependency for the package by running this command from the monorepo root:
 
 ```
 pnpm add -D unrun --filter @aot-dep-badi/devtools-grist-widget
 ```
 
+
 ### How to add dependencies for devtools-grist from root monorepo
 
-```
+ ```
 pnpm add -D tsdown --filter @aot-dep-badi/devtools-grist
 pnpm add -D unrun --filter @aot-dep-badi/devtools-grist
 pnpm add -D execa --filter @aot-dep-badi/devtools-grist
