@@ -20,7 +20,17 @@
       "shutdown_cleanup_reason": "Cleanup signal reason: {{reason}}",
       "shutdown_vite": "Stopping Vite local web server...",
       "shutdown_docker": "Stopping Grist Docker container...",
-      "shutdown_success": "Houston, we have... a completely successfully shutdown!",
+      "shutdown_success": {
+        "item_0": "Houston, we have... a completely successfully shutdown!",
+        "item_1": "I felt a great disturbance in the Force... as if millions of lines of code were suddenly silenced.",
+        "item_2": "Free your mind... and your memory. Connection to the Matrix severed.",
+        "item_3": "Hasta la vista, baby. System powering off.",
+        "item_4": "No bytes were harmed in the making of this session!",
+        "item_5": "Clean shutdown. Thanks for avoiding `kill -9` this time.",
+        "item_6": "Closing faster than my own shadow.",
+        "item_7": "Successful shutdown. I would even go as far as to say: the application stopped cleanly!",
+        "item_8": "Blistering barnacles! The script stopped without a single error!"
+      },
       "error_stopping_vite": "Error stopping Vite local web server.",
       "error_unexpected": "An unexpected error occurred in dev command.",
       "error_timeout_docker": "Docker containers down command was forcefully terminated with SIGKILL after timeout.",
@@ -30,7 +40,10 @@
       "option_grist_port": "Port for the Grist Docker container [default: {{default}}]"
     },
     "build": {
-      "description": "Compile the widget for production."
+      "description": "Compile the widget for production.",
+      "detailed_help": "The build process supports two distinct architectural strategies:\n\n  {{boldDim}}STANDARD{{reset}} (default)\n    Implements advanced code-splitting with cache-busting assets. Third-party\n    libraries are isolated into separate 'vendor' chunks to maximize browser\n    caching efficiency and optimize load times.\n\n  {{boldDim}}SPA{{reset}}\n    Builds the widget as a true Single Page Application. All compiled JavaScript\n    and CSS styles are directly inlined into a single, self-contained HTML file.\n",
+      "option_strategy": "Set the build strategy (Values: STANDARD, SPA) [default: {{default}}]",
+      "error_invalid_strategy": "Invalid build strategy: \"{{strategy}}\". Allowed values: {{allowedStrategies}}"
     },
     "config": {
       "description": "Manages application preferences using the following actions (get, set, list).",

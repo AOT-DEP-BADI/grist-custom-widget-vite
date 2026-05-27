@@ -32,10 +32,11 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsdown",
+    "start-dev": "node ./bin/start-dev.js",
     "dev": "tsdown --watch",
     "test": "vitest",
     "test:bin": "node ./dist/cli.mjs",
+    "build": "tsdown",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
     "package": "pnpm run build && pnpm pack --pack-destination ../../pack",

@@ -5,11 +5,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r --parallel run dev",
-    "build": "pnpm -r run build",
-    "test": "pnpm -r run test",
+    "start-dev": "node tools/devtools-grist/bin/start-dev.js",
     "dev:devtools": "pnpm --filter devtools-grist dev",
-    "test:devtools": "pnpm --filter devtools-grist test",
+    "test:devtools": "pnpm build:devtools && pnpm --filter devtools-grist test",
     "build:devtools": "pnpm --filter devtools-grist build",
     "package:devtools": "pnpm build:devtools && pnpm --filter devtools-grist exec pnpm pack --pack-destination ../../pack",
     "dev:template:react": "pnpm --filter grist-widget-vite-template-react dev",
@@ -22,6 +20,9 @@
     "run:devtools:vanilla": "pnpm --filter grist-widget-vite-template-vanilla devtools",
     "run:devtools:vanilla-ts": "pnpm --filter grist-widget-vite-template-vanilla-ts devtools",
     "test:e2e": "pnpm --filter devtools-grist package && pnpm --dir tests/e2e/widget-react-sandbox-isolated install && pnpm --dir tests/e2e/widget-react-sandbox-isolated exec devtools-grist",
-    "test:e2e:run": "pnpm --dir tests/e2e/widget-react-sandbox-isolated exec devtools-grist"
+    "test:e2e:run": "pnpm --dir tests/e2e/widget-react-sandbox-isolated exec devtools-grist",
+    "dev:all": "pnpm -r --parallel run dev",
+    "build:all": "pnpm -r run build",
+    "test:all": "pnpm -r run test"
   }
 }

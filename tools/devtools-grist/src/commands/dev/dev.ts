@@ -1,6 +1,6 @@
 import { loadProjectConfig, logProjectConfig } from "./DevConfig.js";
 import type { ProjectConfig } from "./type.js";
-import { DevtoolsError } from "../shared/DevtoolsError.js";
+import {DevtoolsError} from "../shared/DevtoolsError.js";
 import {COLOR_PRIMARY, devtoolsServerInfo, logError, logVerbose, splashscreen, title} from "../../utils/console/output.js";
 import type { ViteDevServer } from "vite";
 import { startGristDocker, startViteServer } from "./DevTasks.js";
@@ -55,10 +55,11 @@ export async function runDev(options: DevOptions): Promise<void> {
 
     try {
         splashscreen({
-            title: 'DEVTOOLS GRIST CUSTOM WIDGET • RUNNING DEV',
+            title: 'DEVTOOLS GRIST CLI • RUNNING DEV',
             colorPrimary: COLOR_PRIMARY,
             width: 60,
-            newlineBefore: false
+            newlineBefore: true,
+            newlineAfter: true
         });
 
         // Load and display project configuration
@@ -73,7 +74,7 @@ export async function runDev(options: DevOptions): Promise<void> {
         const gristActualPort = await startGristDocker(projectConfig, viteActualPort, options.gristPort);
 
         // Success notification and display localized access URLs
-        title(i18next.t('commands.dev.ready'), { colorPrimary: COLOR_PRIMARY, newlineBefore: true });
+        title(i18next.t('commands.dev.ready'), { colorPrimary: COLOR_PRIMARY, newlineBefore: isVerbose() });
         devtoolsServerInfo({
             vitePort: viteActualPort,
             gristPort: gristActualPort
@@ -96,6 +97,7 @@ export async function runDev(options: DevOptions): Promise<void> {
     } catch (error) {
         if (error instanceof DevtoolsError) {
             logError(error.message, error.originalError);
+            process.exit(1);
         } else {
             logError(i18next.t('commands.dev.error_unexpected'), error);
         }
@@ -135,7 +137,10 @@ async function cleanup(reason: string = "EXIT") {
             });
             logVerbose('');
 
-            console.log(` ${STYLE.FG_GREEN}✓${STYLE.RESET} ${i18next.t('commands.dev.shutdown_success')}`);
+            const shutdownItems = i18next.t('commands.dev.shutdown_success', { returnObjects: true });
+            const totalItems = Object.keys(shutdownItems).length;
+            const randomIndex = Math.floor(Math.random() * totalItems);
+            console.log(` ${STYLE.FG_GREEN}✓${STYLE.RESET} ${i18next.t(`commands.dev.shutdown_success.item_${randomIndex}`)}`);
         } catch (error: any) {
             if (error.isForcefullyTerminated) {
                 logError(i18next.t('commands.dev.error_timeout_docker'));

@@ -9,6 +9,8 @@ import {increaseVerbosity, setVerbosity} from "./utils/console/levelVerbosity.js
 import * as ANSI from './utils/console/ansi.js';
 import pkg from '../package.json' with {type: 'json'};
 import {configStore} from "./commands/config/configurationStore.js";
+import {DevtoolsError} from "./commands/shared/DevtoolsError.js";
+import {runBuild} from "./commands/build/build.js";
 
 const {STYLE} = ANSI;
 const program = new Command();
@@ -62,7 +64,7 @@ async function main() {
                     `${STYLE.FG_YELLOW}$1${STYLE.DIM + STYLE.BOLD}$2${STYLE.RESET}`
                 );
 
-                return customizedOutput + '\n';
+                return customizedOutput;
             },
             optionTerm: (option) => {
                 return `${STYLE.FG_GREEN}${option.flags}${STYLE.RESET}`;
@@ -99,8 +101,32 @@ async function main() {
     program
         .command('build')
         .description(i18next.t('commands.build.description'))
-        .action(() => {
-            console.log('Not implemented yet.');
+        .addHelpText('after', i18next.t('commands.build.detailed_help', {
+            boldDim: STYLE.BOLD + STYLE.DIM,
+            reset: STYLE.RESET
+        }))
+        .option(
+            '-s, --build-strategy <strategy>',
+            i18next.t('commands.build.option_strategy', { default: 'STANDARD' }),
+            (val) => {
+                const upper = val.toUpperCase();
+                const ALLOWED_BUILD_STRATEGIES = ['SPA', 'STANDARD'];
+                if (!ALLOWED_BUILD_STRATEGIES.includes(upper)) {
+                    throw new DevtoolsError('INVALID_BUILD_STRATEGY', i18next.t('commands.build.error_invalid_strategy', {
+                        strategy: val,
+                        allowedStrategies: ALLOWED_BUILD_STRATEGIES.join(', ')
+                    }));
+                }
+                return upper;
+            },
+            'STANDARD'
+        )
+        .option('-v, --verbose', i18next.t('application.options.verbose_description'), increaseVerbosity, 0)
+        .action(async (options) => {
+            const globalOpts = program.opts();
+            setVerbosity(globalOpts.verbose || 0);
+
+            await runBuild(options);
         });
 
 

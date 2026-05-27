@@ -19,7 +19,17 @@
       "shutdown_cleanup_reason": "Signal d'interruption émis : {{reason}}",
       "shutdown_vite": "Arrêt du serveur local Vite...",
       "shutdown_docker": "Arrêt du conteneur Docker Grist...",
-      "shutdown_success": "J'ai ressenti une grande perturbation dans la force... comme si des milliers de lignes de code s'étaient éteintes d'un coup !",
+      "shutdown_success": {
+        "item_0": "Houston, nous avons... un arrêt totalement réussi !",
+        "item_1": "J'ai ressenti une grande perturbation dans la Force... comme si des millions de lignes de code s'étaient soudainement tues.",
+        "item_2": "Libère ton esprit... et ta mémoire. Connexion à la Matrice coupée.",
+        "item_3": "Hasta la vista, baby. Extinction du système.",
+        "item_4": "Aucun octet n'a été maltraité durant cette session !",
+        "item_5": "Arrêt propre. Merci d'avoir évité un `kill -9` cette fois.",
+        "item_6": "Fermeture plus rapide que mon ombre.",
+        "item_7": "Arrêt réussi. Je dirais même plus : l'application s'est arrêtée proprement !",
+        "item_8": "Mille sabords ! Le script s'est arrêté sans une seule erreur !"
+      },
       "error_unexpected": "Une erreur inattendue est survenue dans la commande dev",
       "error_stopping_vite": "Erreur lors de l'arrêt du serveur web local Vite.",
       "error_timeout_docker": "La commande d'arrêt des conteneurs Docker a été interrompue de force par un SIGKILL après expiration du délai.",
@@ -29,7 +39,10 @@
       "option_grist_port": "Port pour le conteneur Docker Grist [défaut: {{default}}]"
     },
     "build": {
-      "description": "Compiler le widget Grist pour la production."
+      "description": "Compiler le widget Grist pour la production.",
+      "detailed_help": "Le processus de compilation prend en charge deux stratégies architecturales :\n\n  {{boldDim}}STANDARD{{reset}} (par défaut)\n    Implémente un découpage de code (code-splitting) avancé avec gestion du cache (cache-busting).\n    Les bibliothèques tierces sont isolées dans des fichiers 'vendor' distincts afin de maximiser\n    les performances et l'efficacité du cache du navigateur.\n\n  {{boldDim}}SPA{{reset}}\n    Compile le widget sous la forme d'une Single Page Application (application à page unique).\n    L'ensemble du code JavaScript et des styles CSS est directement injecté en ligne (inline)\n    au sein d'un unique fichier HTML autonome.\n",
+      "option_strategy": "Définir la stratégie de build (Values: STANDARD, SPA) [default: {{default}}]",
+      "error_invalid_strategy": "La stratégie de build choisie est invalide. \"{{strategy}}\". Valeurs autorisées : {{allowedStrategies}}"
     },
     "config": {
       "description": "Gère les préférences de l'application, à l'aide des actions suivantes (get, set, list).",

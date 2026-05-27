@@ -5,21 +5,39 @@ Devtools Grist
 
 ### Commands
 
-| Command | Execution context                             | Description |
-| --- |-----------------------------------------------| --- |
-| `pnpm dev:devtools` | **Monorepo root**                             | Launches the development environment with `tsdown --watch` to instantly recompile the project whenever a file in `./src` changes. |
-| `pnpm test:devtools` | **Monorepo root**                             | Runs all unit and integration tests in parallel using **Vitest**, providing a clear visual report in the console. |
-| `pnpm build:devtools` | **Monorepo root**                             | Compiles TypeScript source code into ESM modules (`.mjs`) inside the `dist/` folder using the ultra-fast, Rust-powered **Rolldown** engine (via `tsdown`). |
-| `pnpm package:devtools` | **Monorepo root**                             | Triggers the build pipeline and bundles the package into a deployable tarball (`.tgz`) located in the centralized `./pack` folder. |
-| `pnpm add -D <pkg> --filter @aot-dep-badi/devtools-grist` | **Monorepo root**                             | *Windows Workaround*: Installs a dev dependency to the specific monorepo package from the root to bypass local pnpm resolution issues. |
+| Command | Execution context | Description |
+| --- | --- | --- |
+| `pnpm start-dev` | **Monorepo root** | Automates workspace setup by concurrently launching continuous build (`dev:devtools`) and test (`test:devtools`) processes across split terminal tabs. |
+| `pnpm dev:devtools` | **Monorepo root** | Launches the development environment with `tsdown --watch` to instantly recompile the project whenever a file in `./src` changes. |
+| `pnpm test:devtools` | **Monorepo root** | Runs all unit and integration tests in parallel using **Vitest**, providing a clear visual report in the console. |
+| `pnpm build:devtools` | **Monorepo root** | Compiles TypeScript source code into ESM modules (`.mjs`) inside the `dist/` folder using the ultra-fast, Rust-powered **Rolldown** engine (via `tsdown`). |
+| `pnpm package:devtools` | **Monorepo root** | Triggers the build pipeline and bundles the package into a deployable tarball (`.tgz`) located in the centralized `./pack` folder. |
+| `pnpm add -D <pkg> --filter @aot-dep-badi/devtools-grist` | **Monorepo root** | *Windows Workaround*: Installs a dev dependency to the specific monorepo package from the root to bypass local pnpm resolution issues. |
 | `pnpm typecheck` | **Package folder** (`./tools/devtools-grist`) | Performs a full static analysis of the codebase using `tsc --noEmit` to catch typing errors without generating any output files. |
 | `pnpm release` | **Package folder** (`./tools/devtools-grist`) | Starts the interactive **bumpp** CLI to automate semantic versioning, update `package.json`, commit changes, and generate Git tags. |
+
+
+### Multi-terminal local dev environment launch (`start-dev`)
+
+```shell
+# Run from the root of the monorepo
+pnpm start-dev
+```
+
+To streamline the Developer Experience (DX), this script automates your workspace setup by concurrently launching continuous build and test processes across separate terminal tabs.
+
+It automatically detects your operating system to adapt its behavior. On Windows, for example, it opens a **Windows Terminal (`wt.exe`)** instance split into three distinct tabs:
+
+ - **Build Process:** Launches `pnpm dev:devtools` in watch mode.
+ - **Testing:** Runs unit and integration tests in parallel via Vitest (`pnpm test:devtools`).
+ - **Helper Guide:** Displays a cheat sheet of recommended commands for different widget flavors (React, Vanilla, TypeScript) to easily test the binary against each template.
+
 
 
 ### Dev
 
 ```shell
-# At the root of the monorepo project (alias for `pnpm dev` in the ./tools/devtools-grist folder)
+# Run from the root of the monorepo (alias for `pnpm dev` in the ./tools/devtools-grist folder)
 pnpm dev:devtools
 ```
 
@@ -28,7 +46,7 @@ Launches the development environment using the **[tsdown](https://tsdown.dev/gui
 ### Test
 
 ```shell
-# At the root of the monorepo project (alias for `pnpm test` in the ./tools/devtools-grist folder)
+# Run from the root of the monorepo (alias for `pnpm test` in the ./tools/devtools-grist folder)
 pnpm test:devtools 
 ```
 
@@ -37,7 +55,7 @@ Launches the test environment configured with **[Vitest](https://vitest.dev/guid
 ### Build
 
 ```shell
-# At the root of the monorepo project (alias for `pnpm build` in the ./tools/devtools-grist folder)
+# Run from the root of the monorepo (alias for `pnpm build` in the ./tools/devtools-grist folder)
 pnpm build:devtools 
 ```
 
@@ -57,7 +75,7 @@ This build workflow includes two key lifecycle scripts to ensure code integrity 
 ### TypeScript checking types
 
 ```shell
-# At the ./tools/devtools-grist folder
+# Run from the ./tools/devtools-grist folder
 pnpm typecheck
 ```
 
@@ -86,7 +104,7 @@ Running pnpm typecheck will intercept this immediately and output the compiler e
 ### Packaging
 
 ```shell
-# Run from the monorepo root
+# Run from the root of the monorepo
 pnpm package:devtools
 ```
 
@@ -100,7 +118,8 @@ This command automates the entire packaging workflow, bundling the tool into a d
 
 ### Release
 
-```
+```shell
+# Run from the ./tools/devtools-grist folder
 pnpm release
 ```
 
@@ -114,7 +133,7 @@ The release command uses the **[bumpp](https://github.com/antfu-collective/bumpp
 
 > **Note**:
 > To prevent `bumpp` from pushing tags to your remote repository, use the `bumpp --no-push` option.
-> To name tags specifically, especially when you have multiple projects in a Node.js workspace, use the `bumpp --tag @aot-dep-badi/devtools-grist-widget@%s` option.
+> To name tags specifically, especially when you have multiple projects in a Node.js workspace, use the `bumpp --tag @aot-dep-badi/devtools-grist@%s` option.
 
 ---
 
@@ -125,15 +144,15 @@ The release command uses the **[bumpp](https://github.com/antfu-collective/bumpp
 Sometimes pnpm struggles with recursive resolution when you run the command inside a deep sub-folder. Try running the command from the root of the project using a filter instead.
 
 ```
-./tool/devtools-grist-widget> pnpm add -D tsdown
+./tool/devtools-grist> pnpm add -D tsdown
 ERROR: Cannot destructure property 'manifest' of 'manifestsByPath[rootDir]' as it is undefined.
 ```
 
 To resolve this known issue, run the command from the root of the project by adding a filter with the `--filter` option.
 
 ```
-./tool/devtools-grist-widget> cd ..
-.> pnpm add -D tsdown --filter @aot-dep-badi/devtools-grist-widget
+./tool/devtools-grist> cd ..
+.> pnpm add -D tsdown --filter @aot-dep-badi/devtools-grist
 ```
 
 
@@ -144,13 +163,16 @@ If you encounter an error stating `Failed to import module "unrun". Please ensur
 To resolve this, install `unrun` as a dev dependency for the package by running this command from the monorepo root:
 
 ```
-pnpm add -D unrun --filter @aot-dep-badi/devtools-grist-widget
+pnpm add -D unrun --filter @aot-dep-badi/devtools-grist
 ```
 
 
 ### How to add dependencies for devtools-grist from root monorepo
 
- ```
+Few examples:
+
+```shell
+# Run from the root of the monorepo
 pnpm add -D tsdown --filter @aot-dep-badi/devtools-grist
 pnpm add -D unrun --filter @aot-dep-badi/devtools-grist
 pnpm add -D execa --filter @aot-dep-badi/devtools-grist
