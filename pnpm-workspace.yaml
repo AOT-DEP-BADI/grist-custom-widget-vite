@@ -3,3 +3,6 @@ packages:
   - 'tools/*'
 
 shellEmulator: true
+
+overrides:
+  "@aot-dep-badi/devtools-grist": "workspace:*"
