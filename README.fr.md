@@ -14,9 +14,11 @@ Ce boilerplate fournit une base robuste pour créer des [Grist custom widgets](h
 
 **Caractéristiques principales :**
 
-* **Environnement clé en main (Zero-Setup)** : Un espace de travail entièrement orchestré et prêt à l'emploi pour les développeurs, comprenant une instance Grist locale conteneurisée.
+* **Environnement clé en main (Zero-Setup)** : Un espace de travail entièrement orchestré et prêt à l'emploi pour les développeurs, comprenant une instance Grist locale conteneurisée via Docker.
 * **Plusieurs variantes (Flavors)** : Démarrez votre projet avec votre pile technique préférée, prenant en charge à la fois Vanilla et React, en JavaScript ou en TypeScript.
 * **Bundling flexible** : Choisissez votre stratégie de déploiement grâce au support du découpage standard des ressources (*Standard asset splitting*) avec gestion du cache, ou d'un build SPA (*Single Page Application*).
+* **Publication automatisée du manifeste de widgets Grist dans le conteneur Docker local** : 
+  Lors du lancement de l'environnement de développement, le manifeste est automatiquement déployé et associé à l'instance Docker Grist active.
 * **CLI Devtools unifié** : Gérez sans effort le développement local, la compilation de production et la prévisualisation grâce à une application CLI unique offrant des commandes simples (`dev`, `build`, `preview`).
 
 

@@ -17,6 +17,8 @@ This boilerplate provides a robust foundation for building [Grist custom widgets
 - **Zero-Setup Environment**: A fully orchestrated, ready-to-use workspace for developers, featuring a local dockerized Grist instance.
 - **Multiple Flavors**: Kickstart your project with your preferred tech stack, supporting both Vanilla and React in either *JavaScript or TypeScript.
 - **Flexible Bundling**: Choose your deployment strategy with support for *Standard asset splitting* with cache-busting or a SPA build (*Single Page Application*).
+- **Automated publication of the Grist widget manifest to the local Docker container**:
+  When launching the development environment, the manifest is automatically deployed and linked to the active Grist Docker instance.
 - **Unified Devtools CLI**: Effortlessly manage local development, production building, and previewing through a unique CLI application providing simple commands (`dev`, `build`, `preview`).
 
 
